@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <script>
+    let item1 = document.querySelector(".extended-level-0 .links-level .content-1");
+let item2 = document.querySelector(".extended-level-0 .links-level .content-2");
+
+function clickContent1() {
+    let link1 = document.querySelector(".extended-level-0 .Modes li:first-child a");
+
+    if (item1.style.display === "none" || item1.style.display === "") {
+        item1.style.display = "block";
+        item1.style.opacity = "1";
+        item2.style.marginLeft = "0px";
+        link1.style.color = "black"; 
+        link1.style.fontWeight= "700"; 
+    } else {
+        item1.style.display = "none";
+        item2.style.marginLeft = "190px";
+        item1.style.opacity = "0";
+        link1.style.color = "white"; 
+        link1.style.fontWeight= "700"; 
+    }
+}
+
+function clickContent2() {
+    let link2 = document.querySelector(".extended-level-0 .Modes li:last-child a");
+
+    if (item2.style.display === "none" || item2.style.display === "") {
+        item2.style.display = "block";
+        item2.style.opacity = "1";
+        if (item1.style.display === "none" || item1.style.display === "") {
+            item2.style.marginLeft = "190px";
+        } else {
+            item2.style.marginLeft = "0px";
+        }
+        link2.style.color = "black";
+        link2.style.fontWeight= "700"; 
+    } else {
+        item2.style.display = "none";
+        item2.style.opacity = "0";
+        link2.style.color = "white"; 
+        link2.style.fontWeight= "0"; 
+    }
+}
+
+
+
+
+let item3 = document.querySelector(".extended-level-1 .links-level .content-1");
+let item4 = document.querySelector(".extended-level-1 .links-level .content-2");
+
+function clickContent3() {
+    let link3 = document.querySelector(".extended-level-1 .Modes li:first-child a");
+
+    if (item3.style.display === "none" || item3.style.display === "") {
+        item3.style.display = "block";
+        item3.style.opacity = "1";
+        item4.style.marginLeft = "0px";
+        link3.style.color = "black"; 
+        link3.style.fontWeight= "700"; 
+    } else {
+        item3.style.display = "none";
+        item4.style.marginLeft = "190px";
+        item3.style.opacity = "0";
+        link3.style.color = "white"; 
+        link3.style.fontWeight= "700"; 
+    }
+}
+
+function clickContent4() {
+    let link4 = document.querySelector(".extended-level-1 .Modes li:last-child a");
+
+    if (item4.style.display === "none" || item4.style.display === "") {
+        item4.style.display = "block";
+        item4.style.opacity = "1";
+        if (item3.style.display === "none" || item3.style.display === "") {
+            item4.style.marginLeft = "190px";
+        } else {
+            item4.style.marginLeft = "0px";
+        }
+        link4.style.color = "black";
+        link4.style.fontWeight= "700"; 
+    } else {
+        item4.style.display = "none";
+        item4.style.opacity = "0";
+        link4.style.color = "white"; 
+        link4.style.fontWeight= "0"; 
+    }
+}
+
+function handleLevelClick(levelNumber) {
+    const clickedExtendedLevel = document.querySelector(`.extended-level-${levelNumber}`);
+    const allExtendedLevels = document.querySelectorAll('[class^="extended-level"]');
+    const allLevels = document.querySelectorAll('[class^="level-"]');
+
+    // Toggle the display of the clicked extended level
+    clickedExtendedLevel.style.display = (clickedExtendedLevel.style.display === 'none') ? 'block' : 'none';
+
+    // Hide other extended levels
+    allExtendedLevels.forEach((extendedLevel) => {
+        if (extendedLevel !== clickedExtendedLevel) {
+            extendedLevel.style.display = 'none';
+        }
+    });
+
+    // Adjust the width of level divs based on the display state of extended level
+    if (clickedExtendedLevel.style.display === 'block') {
+        allLevels.forEach((level) => {
+            if (level !== clickedExtendedLevel) {
+                level.style.width = '85px'; // Adjust the width as needed
+            }
+        });
+    } else {
+        // Reset the width of all level divs when no extended level is displayed
+        allLevels.forEach((level) => {
+            level.style.width = '130px'; // Set it back to the original width
+        });
+    }
+}
+
+// Attach click event listeners to all level divs
+for (let i = 0; i <= 10; i++) {
+    const level = document.querySelector(`.level-${i}`);
+    level.addEventListener('click', () => handleLevelClick(i));
+}
+
+  </script>
+</html>
